@@ -2,9 +2,16 @@
 function getId(){
     const param = window.location.search;
     const id = param.replace("?id=", ""); // Retire ?ID= des parametres de l'URL, Recupère uniquement l'identitfiant
-    console.log('test')
     return id;
 }
+///
+
+
+
+
+
+
+
 
 
 
@@ -30,14 +37,16 @@ function addProductInfo(response){
     const price = document.createElement("p");
     price.innerHTML = response.price + "€";
     
+    // arboresence
+    container.appendChild(div);
+    div.appendChild(title);
+    div.appendChild(img);
+    div.appendChild(description);
+    div.appendChild(colors);
+    div.appendChild(price);
+    div.appendChild(btn);
 }
 const id = getId();
 get("http://localhost:3000/api/teddies/" + id).then( function(response){
     addProductInfo(response);
-    
-}).catch(function(err){
-    console.log(err);
-    if(err === 0){ // requete ajax annulée
-        alert("serveur HS");
-    }
 });
