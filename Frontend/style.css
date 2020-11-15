@@ -13,49 +13,6 @@ body {
 h2 {
     text-transform: uppercase;
 }
-#item {
-    display: flex;
-    text-align: center;
-    align-items: center;
-}
-.picture {
-    height: 150px;
-    margin-right: 20px;
-}
-}
-.name {
-    background-color: gray;
-}
-.card-id{
-    display: none;
-}
-
-
-
-/* ------------------------------------ CARD ------------------------------------ */
-
-.card {
-    height: 400px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.card-img-top {
-    height: 150px;
-}
-.card-name {
-    text-transform: uppercase;
-    font-size: 1.2em;
-    background-color: darkslategrey;
-    color: white;
-}
-.card-text {
-    font-weight: bolder;
-}
-
-
-
 
 
 

@@ -1,30 +1,46 @@
-// récupérer toutes infos de l'API
 
-  fetch('http://localhost:3000/api/teddies')
+// Ajout des produit en dynamique //
 
-// récupérer sous forme de données .json
+function addProduct(responseProduct, section){
 
-  .then(response => response.json())
-  .then(json =>  {
-    console.log(json)
+    const div = document.createElement("div");
+    div.innerHTML = responseProduct.name;
+    div.setAttribute("class", "col-md-5 product-border mt-5 mb-4 col-sm-6 mr-4 ml-4 border border-dark");
 
-// Afficher le tout dans une card
+    const img = document.createElement("img");
+    img.setAttribute("src", responseProduct.imageUrl);
+    img.setAttribute("width", "100%");
 
-    json.forEach(element => {
-      console.log(element);
-      document.getElementById('item').innerHTML += `
-      <div class="card col-4 col-md-4 col-lg-2">
+    const description = document.createElement("div");
+    description.innerHTML = responseProduct.description;
 
-      <p class="card-id">ID:${element._id}</p><br>
-      <p class="card-name">${element.name}</p>
-      <p class="card-text">${element.price} €</p>
-      <p><img class="card-img-top" src="${element.imageUrl}"></p> 
-      <p class="card-description">${element.description}</p>
+    const colors = document.createElement("p");
+    colors.innerHTML = "Choix des couleurs: "+ responseProduct.colors;
+    
+    const price = document.createElement("p");
+    price.innerHTML = responseProduct.price + "€";
 
-      </div> `
-    });
-  });
-  
+    const link = document.createElement("a");
+    link.setAttribute("href", "produit.html?id=" + responseProduct._id);
 
+    section[1].appendChild(div);
+    div.appendChild(link);
+    link.appendChild(img);
+    div.appendChild(description);
+    div.appendChild(colors);
+    div.appendChild(price);
+}
 
-  
+function addDivToFixDisplay(section){
+    const div = document.createElement("div");
+    div.setAttribute("class", "col-md-5 mt-5 mb-4 ml-4 mr-4");
+    section[1].appendChild(div);
+}
+
+get("http://localhost:3000/api/teddies").then( function(response){
+    const section = document.getElementsByClassName("row");
+    
+    for (let i = 0; i < response.length; i = i + 1){   
+        addProduct(response[i], section);
+    }
+});
