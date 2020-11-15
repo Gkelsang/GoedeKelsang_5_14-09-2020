@@ -19,9 +19,8 @@
       <p class="card-text">${element.price} €</p>
       <p><img class="card-img-top" src="${element.imageUrl}"></p> 
 
+lement.name}>
 
-        <select id=${element.name}>
-        </select> <br>
 
 
     
