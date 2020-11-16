@@ -1,87 +1,39 @@
-////////////// Récuprérer l'id dans l'URL /////////////////////////////////////////////////
-function getId(){
-    const param = window.location.search;
-    const id = param.replace("?id=", ""); // Retire ?ID= des parametres de l'URL, Recupère uniquement l'identitfiant
-    return id;
-}
-///////////////// Ajoute le produit dans le panier avec la lentille sélectionnée par l'utilisateur /////
-function addToBasket(lenseSelected){
-    let basketContent = JSON.parse(localStorage.getItem("basketContent"));
-    if (basketContent === null){
-        basketContent = [];
-    }
+const idTeddy = document.location.hash.substring();
 
-/////////////////////// Produit ajouter au local storage //////////////////////////////
-    let product = new Product(id, lenseSelected);
+const afficherUnTeddy = async idTeddy => {
+   const element = await get(`http://localhost:3000/api/teddies/${idTeddy}`);
+   const article = document.querySelector('#article');
 
-    basketContent.push(product);
-    localStorage.setItem("basketContent", JSON.stringify(basketContent));
-}
 
-///////////////////////// Ajoute les informations produit dans la page HTLM ///////////////////
-function addProductInfo(response){
-    //création du cadre de l'appareil photo séléctionné
-    const container = document.getElementById("productcontainer");
+   article.innerHTML =`
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
+               <div class="card h-100">
+                  <img class="card-img-top" src="${element.imageUrl}" alt="">
+                  <div class="card-body">
+                  <p>${element.id}</p>
+                     <h4 class="card-title text-primary">${element.name}</h4>
+                     <h5>$${element.price}</h5>
+                     <p class="card-text">${element.description}</p>
+                  </div>
+               </div>
+            </div>`;
+};
 
-    const div = document.createElement("div");
-    div.setAttribute("class", "product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
 
-    const img = document.createElement("img");
-    img.setAttribute("src", response.imageUrl);
-    img.setAttribute("width", "100%");
+afficherUnTeddy(idTeddy)
+   .then( article => {
+      const btnAjoutPanier = article.querySelector('#ajoutPanier');
+      btnAjoutPanier.addEventListener('click', () => {
+         const quantite = article.querySelector('#quantite').value;
+         
+         if (parseInt(quantite) > 0 && Number.isInteger(parseFloat(quantite))) {
+            ajoutTeddyLocalStorage(idTeddy, quantite);
+         } else {
+            btnAjoutPanier.removeAttribute('data-toggle');
+            btnAjoutPanier.removeAttribute('data-target');
+            alert("Il faut saisir un entier supérieur à 0");
+            location.reload();
+         }
 
-    const title = document.createElement("div");
-    title.innerHTML = response.name;
-    title.setAttribute("class", "producttitle text-center mb-4");
-
-    const legend = document.createElement("div");
-    legend.innerHTML = response.description;
-    
-    const price = document.createElement("p");
-    price.innerHTML = response.price + "€";
-    
-    // Choix des lentilles
-    const lenses = document.createElement("select");
-    
-    const optionDefault = document.createElement("option");
-    optionDefault.innerHTML = "Merci de choisir une option";
-    lenses.appendChild(optionDefault);
-
-    //alerte ajout panier
-    const btn = document.createElement("button"); 
-    btn.innerHTML = "Ajouter au panier";
-
-    // Ajout d'élément au local storage
-    btn.addEventListener('click', function(){ 
-        const lenses = document.getElementsByTagName("select");         
-        const lenseSelected = lenses[0].value;
-
-        addToBasket(lenseSelected);
-        alert("ajouté au panier");
-    });
-
-    for (let i = 0; i < response.lenses.length; i = i + 1){
-        const option = document.createElement("option");
-        option.setAttribute("value", response.lenses[i]);
-        option.innerHTML = response.lenses[i];
-        lenses.appendChild(option);
-    }
-    // arboresence
-    container.appendChild(div);
-    div.appendChild(title);
-    div.appendChild(img);
-    div.appendChild(legend);
-    div.appendChild(lenses);
-    div.appendChild(price);
-    div.appendChild(btn);
-}
-const id = getId();
-get("http://localhost:3000/api/cameras/" + id).then( function(response){
-    addProductInfo(response);
-    
-}).catch(function(err){
-    console.log(err);
-    if(err === 0){ // requete ajax annulée
-        alert("serveur HS");
-    }
-});
+      })
+   });
