@@ -4,16 +4,19 @@ function getId(){
     const id = param.replace("?id=", ""); // Retire ?ID= des parametres de l'URL, Recupère uniquement l'identitfiant
     return id;
 }
-///
+///////////////// Ajoute le produit dans le panier avec la lentille sélectionnée par l'utilisateur /////
+function addToBasket(lenseSelected){
+    let basketContent = JSON.parse(localStorage.getItem("basketContent"));
+    if (basketContent === null){
+        basketContent = [];
+    }
 
+/////////////////////// Produit ajouter au local storage //////////////////////////////
+    let product = new Product(id, lenseSelected);
 
-
-
-
-
-
-
-
+    basketContent.push(product);
+    localStorage.setItem("basketContent", JSON.stringify(basketContent));
+}
 
 ///////////////////////// Ajoute les informations produit dans la page HTLM ///////////////////
 function addProductInfo(response){
@@ -37,16 +40,48 @@ function addProductInfo(response){
     const price = document.createElement("p");
     price.innerHTML = response.price + "€";
     
+    // Choix des lentilles
+    const lenses = document.createElement("select");
+    
+    const optionDefault = document.createElement("option");
+    optionDefault.innerHTML = "Merci de choisir une option";
+    lenses.appendChild(optionDefault);
+
+    //alerte ajout panier
+    const btn = document.createElement("button"); 
+    btn.innerHTML = "Ajouter au panier";
+
+    // Ajout d'élément au local storage
+    btn.addEventListener('click', function(){ 
+        const lenses = document.getElementsByTagName("select");         
+        const lenseSelected = lenses[0].value;
+
+        addToBasket(lenseSelected);
+        alert("ajouté au panier");
+    });
+
+    for (let i = 0; i < response.lenses.length; i = i + 1){
+        const option = document.createElement("option");
+        option.setAttribute("value", response.lenses[i]);
+        option.innerHTML = response.lenses[i];
+        lenses.appendChild(option);
+    }
     // arboresence
     container.appendChild(div);
     div.appendChild(title);
     div.appendChild(img);
-    div.appendChild(description);
-    div.appendChild(colors);
+    div.appendChild(legend);
+    div.appendChild(lenses);
     div.appendChild(price);
     div.appendChild(btn);
 }
 const id = getId();
-get("http://localhost:3000/api/teddies/" + id).then( function(response){
+get("http://localhost:3000/api/cameras/" + id).then( function(response){
     addProductInfo(response);
+    
+}).catch(function(err){
+    console.log(err);
+    if(err === 0){ // requete ajax annulée
+        alert("serveur HS");
+    }
 });
