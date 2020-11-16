@@ -1,7 +1,7 @@
 const idTeddy = document.location.hash.substring();
 
 const afficherUnTeddy = async idTeddy => {
-   const element = await get(`http://localhost:3000/api/teddies/${idTeddy}`);
+   const element = get(`http://localhost:3000/api/teddies`);
    const article = document.querySelector('#article');
 
 
@@ -12,7 +12,7 @@ const afficherUnTeddy = async idTeddy => {
                   <div class="card-body">
                   <p>${element.id}</p>
                      <h4 class="card-title text-primary">${element.name}</h4>
-                     <h5>$${element.price}</h5>
+                     <h5>${element.price}</h5>
                      <p class="card-text">${element.description}</p>
                   </div>
                </div>
@@ -37,3 +37,5 @@ afficherUnTeddy(idTeddy)
 
       })
    });
+
+   
