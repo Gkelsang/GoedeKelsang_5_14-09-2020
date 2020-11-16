@@ -1,41 +1,48 @@
-const idTeddy = document.location.hash.substring();
+////////////// Récuprérer l'id dans l'URL /////////////////////////////////////////////////
+function getId(){
+    const param = window.location.search;
+    const id = param.replace("?id=", ""); // Retire ?ID= des parametres de l'URL, Recupère uniquement l'identitfiant
+    return id;
+}
 
-const afficherUnTeddy = async idTeddy => {
-   const element = get(`http://localhost:3000/api/teddies`);
-   const article = document.querySelector('#article');
+///////////////////////// Ajoute les informations produit dans la page HTLM ///////////////////
+function addProductInfo(response){
+    //création du cadre de l'appareil photo séléctionné
+    const container = document.getElementById("productcontainer");
 
+    const div = document.createElement("div");
+    div.setAttribute("class", "product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
 
-   article.innerHTML =`
-            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto">
-               <div class="card h-100">
-                  <img class="card-img-top" src="${element.imageUrl}" alt="">
-                  <div class="card-body">
-                  <p>${element.id}</p>
-                     <h4 class="card-title text-primary">${element.name}</h4>
-                     <h5>${element.price}</h5>
-                     <p class="card-text">${element.description}</p>
-                  </div>
-               </div>
-            </div>`;
-};
+    const img = document.createElement("img");
+    img.setAttribute("src", response.imageUrl);
+    img.setAttribute("width", "100%");
 
+    const title = document.createElement("div");
+    title.innerHTML = response.name;
+    title.setAttribute("class", "producttitle text-center mb-4");
 
-afficherUnTeddy(idTeddy)
-   .then( article => {
-      const btnAjoutPanier = article.querySelector('#ajoutPanier');
-      btnAjoutPanier.addEventListener('click', () => {
-         const quantite = article.querySelector('#quantite').value;
-         
-         if (parseInt(quantite) > 0 && Number.isInteger(parseFloat(quantite))) {
-            ajoutTeddyLocalStorage(idTeddy, quantite);
-         } else {
-            btnAjoutPanier.removeAttribute('data-toggle');
-            btnAjoutPanier.removeAttribute('data-target');
-            alert("Il faut saisir un entier supérieur à 0");
-            location.reload();
-         }
+    const legend = document.createElement("div");
+    legend.innerHTML = response.description;
+    
+    const price = document.createElement("p");
+    price.innerHTML = response.price + "€";
+    
 
-      })
-   });
-
-   
+    // arboresence
+    container.appendChild(div);
+    div.appendChild(title);
+    div.appendChild(img);
+    div.appendChild(description);
+    div.appendChild(colors);
+    div.appendChild(price);
+}
+const id = getId();
+get("http://localhost:3000/api/teddies/" + id).then( function(response){
+    addProductInfo(response);
+    
+}).catch(function(err){
+    console.log(err);
+    if(err === 0){ // requete ajax annulée
+        alert("serveur HS");
+    }
+});
