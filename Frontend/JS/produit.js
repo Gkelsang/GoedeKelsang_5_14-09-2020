@@ -1,48 +1,76 @@
-////////////// Récuprérer l'id dans l'URL /////////////////////////////////////////////////
+// --- Récupérer l'id de l'ourson --- //
+
 function getId(){
     const param = window.location.search;
-    const id = param.replace("?id=", ""); // Retire ?ID= des parametres de l'URL, Recupère uniquement l'identitfiant
+    const id = param.replace("?id=", ""); 
     return id;
 }
 
-///////////////////////// Ajoute les informations produit dans la page HTLM ///////////////////
+// --- Création du fichier HTML sans lequel tout es affiché --- // 
+
 function addProductInfo(response){
-    //création du cadre de l'appareil photo séléctionné
-    const container = document.getElementById("productcontainer");
+    
+    // --- Crée un cadre pour inclure les infos --- // 
+    const container = document.getElementById("cadreproduit");
 
     const div = document.createElement("div");
     div.setAttribute("class", "product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
 
+    // --- Rajoute l'image de l'item --- // 
     const img = document.createElement("img");
     img.setAttribute("src", response.imageUrl);
     img.setAttribute("width", "100%");
 
+    // --- Rajoute une div pour le nom de l'item --- // 
     const title = document.createElement("div");
     title.innerHTML = response.name;
     title.setAttribute("class", "producttitle text-center mb-4");
 
-    const legend = document.createElement("div");
-    legend.innerHTML = response.description;
+    // --- Rajoute une div pour la description de l'item --- //
+    const description = document.createElement("div");
+    description.innerHTML = response.description;
     
+    // --- Rajoute une div pour le prix de l'item --- //
     const price = document.createElement("p");
     price.innerHTML = response.price + "€";
-    
 
-    // arboresence
+    // --- Rajoute un sélecteur pour les couleurs --- //
+    const colors = document.createElement("select");
+
+    const optionDefault = document.createElement("option");
+    optionDefault.innerHTML = "Please choose a color";
+    colors.appendChild(optionDefault);
+
+    // --- Rajoute chaque couleurs dispo pour chaque ourson --- //
+    for (let i = 0; i < response.colors.length; i = i + 1){
+        const option = document.createElement("option");
+        option.setAttribute("value", response.colors[i]);
+        option.innerHTML = response.colors[i];
+        colors.appendChild(option);
+    }
+
+    // --- crée une div dans la balise container --- // 
     container.appendChild(div);
+
+    // --- ajoute une div pour le titre de l'item --- // 
     div.appendChild(title);
+
+    // --- ajoute une div pour l'image' de l'item --- //
     div.appendChild(img);
+
+    // --- ajoute une div pour la description de l'item --- //
     div.appendChild(description);
-    div.appendChild(colors);
+
+    // --- ajoute une div pour le prix de l'item --- //
     div.appendChild(price);
+
+    // --- ajoute une div pour la couleur de l'item --- //
+    div.appendChild(colors);
+
 }
+
+// --- Permet de récupérer l'id des différents item et de nous les renvoyer --- //
 const id = getId();
 get("http://localhost:3000/api/teddies/" + id).then( function(response){
     addProductInfo(response);
-    
-}).catch(function(err){
-    console.log(err);
-    if(err === 0){ // requete ajax annulée
-        alert("serveur HS");
-    }
 });

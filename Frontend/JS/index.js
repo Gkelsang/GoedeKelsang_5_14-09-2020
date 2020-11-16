@@ -27,7 +27,7 @@ function addProduct(responseProduct, section){
   link.setAttribute("href", "produit.html?id=" + responseProduct._id);
 
 
-// --- crée une div dans la balise section --- // 
+  // --- crée une div dans la balise section --- // 
   section[1].appendChild(div);
 
   // --- ajoute un lien dans la balise div --- // 
@@ -39,14 +39,14 @@ function addProduct(responseProduct, section){
   // --- ajoute une div description dans la balise section --- // 
   div.appendChild(description);
 
-  // --- Ajoute le choix des couleurs dans la une balise div --- // 
+  // --- ajoute le choix des couleurs dans la une balise div --- // 
   div.appendChild(colors);
-  
-  // --- Ajoute le prix dans une balise divv --- // 
+
+  // --- ajoute le prix dans une balise divv --- // 
   div.appendChild(price);
 }
 
-// --- Création d'une balise section pour intégrer les items --- // 
+// --- création d'une balise section pour intégrer les items --- // 
 
 function correction(section){
   const div = document.createElement("div");
