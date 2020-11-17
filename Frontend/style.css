@@ -1,39 +1,80 @@
 body {
-    font-family: 'roboto';
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
-.navbar-brand {
-    height: 50px;
-}
+/* ------------------------------------ Header ------------------------------------ */
+
 .site-title {
     text-transform: uppercase;
 }
-.jumbotron {
-    text-align: center;
-}
+
+/* ------------------------------------ Jumbotron ------------------------------------ */
+
 h2 {
+    text-align: center;
     text-transform: uppercase;
 }
+h3 {
+    text-align: center;
+}
+.orspan {
+    color: orange;
+}
 
 
+/* ------------------------------------ Main ------------------------------------ */
 
-/* ------------------------------------ FOOTER ------------------------------------*/
+.divProd {
+  text-align: center;
+  border: black 3px solid;
+  width: 40%;
+  height: 600px;
+  justify-content: space-around;
+  margin: auto;
+  margin-bottom: 5%;
+  background-color: darkgrey;
+
+}
+.descriptionProd {
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.priceProd {
+    font-size: 1.5em;
+    color: orange;
+}
+.imgProd {
+    height: 70%;
+    width: 100%;
+}
+
+/* ------------------------------------ Footer ------------------------------------ */
 
 footer{
     margin-top: 5%;
     padding-top: 2%;
 }
-.tfooter {
-    text-transform: uppercase;
-    color: white;
-    font-size: 2em;
-    text-align: center;
-}
 .pfooter {
     color: white;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    text-align: center;
 }
-.tlinks{
+.mlfooter {
+    float: left;
+    color: orange;
+}
+.cnfooter {
+    float: right;
+    color: orange;
+}
+.cofooter {
     color: white;
+    text-align: center;
+    padding-bottom: 3%;
 }
-.ulfooter{
-    list-style: none;
+.orfooter {
+    color: orange;
 }
