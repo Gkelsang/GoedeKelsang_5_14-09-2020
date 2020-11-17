@@ -5,31 +5,33 @@
 
 function addProduct(responseProduct, section){
   const div = document.createElement("div");
-  // --- Ajout d'une classe pour css --- //
-  div.classList.add('divProd');
   div.innerHTML = responseProduct.name;
+  div.setAttribute("class", "col-md-5 product-border mt-5 mb-4 col-sm-6 mr-4 ml-4 border border-dark");
+  div.style.textAlign = "center";
+  div.style.backgroundColor = "grey";
+  div.style.paddingBottom = "5%";
+  div.style.paddingTop = "2%"
 
   // --- crée une div avec une image --- // 
 
   const img = document.createElement("img");
-  // --- Ajout d'une classe pour css --- //
-  img.classList.add('imgProd');
   img.setAttribute("src", responseProduct.imageUrl);
+  img.setAttribute("width", "100%");
+  img.style.paddingBottom = "5%";
+  img.style.paddingTop = "3%"
 
   const description = document.createElement("div");
-  // --- Ajout d'une classe pour css --- //
-  description.classList.add('descriptionProd');
   description.innerHTML = responseProduct.description;
 
   const colors = document.createElement("p");
-  // --- Ajout d'une classe pour css --- //
-  colors.classList.add('colorsProd')
   colors.innerHTML = "Choix des couleurs: "+ responseProduct.colors;
   
   const price = document.createElement("p");
-  // --- Ajout d'une classe pour css --- //
-  price.classList.add('priceProd')
+  price.classList.add('priceProd');
   price.innerHTML = responseProduct.price + " €";
+  price.style.fontSize = "x-large";
+  price.style.color = "orange";
+  
 
   const link = document.createElement("a");
   link.setAttribute("href", "produit.html?id=" + responseProduct._id);

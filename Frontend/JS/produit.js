@@ -12,7 +12,7 @@ function addProductInfo(response){
     
     // --- Crée un cadre pour inclure les infos --- // 
     const container = document.getElementById("cadreproduit");
-
+    
     const div = document.createElement("div");
     div.setAttribute("class", "product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
 
