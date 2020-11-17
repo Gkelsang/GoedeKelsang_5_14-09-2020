@@ -13,26 +13,28 @@ function addProduct(responseProduct, section){
   div.style.paddingTop = "2%"
 
   // --- crée une div avec une image --- // 
-
   const img = document.createElement("img");
   img.setAttribute("src", responseProduct.imageUrl);
   img.setAttribute("width", "100%");
   img.style.paddingBottom = "5%";
   img.style.paddingTop = "3%"
 
+  // --- Rajoute une div pour la description de l'item --- //  
   const description = document.createElement("div");
   description.innerHTML = responseProduct.description;
 
+  // --- Rajoute un sélecteur pour les couleurs --- /
   const colors = document.createElement("p");
   colors.innerHTML = "Choix des couleurs: "+ responseProduct.colors;
   
+  // --- Rajoute une div pour le prix de l'item --- //
   const price = document.createElement("p");
   price.classList.add('priceProd');
   price.innerHTML = responseProduct.price + " €";
   price.style.fontSize = "x-large";
   price.style.color = "orange";
   
-
+  // --- Rajoute le lien pour la page produit --- /
   const link = document.createElement("a");
   link.setAttribute("href", "produit.html?id=" + responseProduct._id);
 
