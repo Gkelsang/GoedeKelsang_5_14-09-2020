@@ -14,9 +14,9 @@ function addProductInfo(response){
     const container = document.getElementById("cadreproduit");
     
     const div = document.createElement("div");
-    div.setAttribute("class", "product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
+    div.setAttribute("class", "bg-dark product-border offset-1 col-10 col-md-6 offset-md-3 mt-5 mb-5 p-3 border border-dark");
     div.style.textAlign = "center";
-    div.style.backgroundColor = "grey";
+    div.style.color = "white";
     div.style.paddingBottom = "5%";
     div.style.paddingTop = "2%"
 

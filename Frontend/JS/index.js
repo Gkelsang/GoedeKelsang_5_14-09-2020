@@ -6,9 +6,9 @@
 function addProduct(responseProduct, section){
   const div = document.createElement("div");
   div.innerHTML = responseProduct.name;
-  div.setAttribute("class", "col-md-5 product-border mt-5 mb-4 col-sm-6 mr-4 ml-4 border border-dark");
+  div.setAttribute("class", " bg-dark col-md-5 product-border mt-5 mb-4 col-sm-6 mr-4 ml-4 border border-dark");
   div.style.textAlign = "center";
-  div.style.backgroundColor = "grey";
+  div.style.color ="white";
   div.style.paddingBottom = "5%";
   div.style.paddingTop = "2%"
 
