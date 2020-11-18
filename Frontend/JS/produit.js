@@ -75,7 +75,9 @@ function addProductInfo(response){
     
     // --- Bouton ajouter au panier --- //
     const btn = document.createElement("button");
-    btn.innerHTML = "Add to basket";
+    btn.innerHTML = "Ajouter au panier";
+    btn.style.borderRadius = "8px";
+    btn.style.marginLeft = "3%";
 
 
     // ---------- Fin de la partie création ---------- //

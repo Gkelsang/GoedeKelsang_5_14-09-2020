@@ -1,3 +1,35 @@
+get("http://localhost:3000/api/teddies/").then(function(response){
+    
+    // --- Ajouter un élement au panier --- // 
+        // --- Récupération du localStorage --- //
+    const basketContent = JSON.parse(localStorage.getItem("basketContent"));
+    const container = document.getElementById("product-basket");
+    if (basketContent.length === 0){
+
+        // --- Si panier vide écrire une message --- //
+        emptyBasketMessage(container);
+    } else {
+        let totalPrice = 0;
+        for (let productBasket of basketContent){
+            for (let productInfo of response){
+                if (productBasket.id === productInfo._id){
+                    totalPrice = addBasketProduct(container, productInfo, productBasket, basketContent, totalPrice);
+                    localStorage.setItem("totalPriceConfirmationPage", totalPrice);
+                }
+            }
+        }
+    }
+})
+
+// --- Message pour le panier vide --- //
+
+function emptyBasketMessage(container){
+    const emptyBasket = document.createElement("div")
+    emptyBasket.innerHTML ="Votre panier est vide";
+    container.appendChild(emptyBasket);
+    emptyBasket.style.color ="orange";
+}
+
 // --- Création du HTML à partir du panier --- //
 
 function addBasketProduct(container, productInfo, productBasket, basketContent, totalPrice){
@@ -27,7 +59,7 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
     btn.innerHTML = "Supprimer";
     btn.setAttribute("class", "bg-light text-dark");
     btn.setAttribute("data-id", productInfo._id);
-    btn.style.borderRadius = "15px";
+    btn.style.borderRadius = "8px";
     btn.style.marginTop = "3%";
 
  // ----------------------------------------------- COLONNE 2 DU TABLEAU ----------------------------------------------- //
@@ -53,7 +85,8 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
 //  // ----------------------------------------------- FIN DU TABLEAU ----------------------------------------------- //  //
 
 
-    ///////////////////////////// Supprimer un élément du panier ///////////////////////////////////////
+    // --------  Supprimer un élément du panier -------- //
+
     btn.addEventListener('click', function(e){ 
         const id = e.target.getAttribute("data-id");
 
@@ -67,6 +100,8 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
         window.location.href = "panier.html"; // on revient à la page d'acceuil 
     });
     
+    // --- Arborescence de la page --- //
+
     productContainer.appendChild(divTitle);
     divTitle.appendChild(name);
     divTitle.appendChild(image);
@@ -77,34 +112,3 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
 
     return totalPrice;
 }
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-get("http://localhost:3000/api/teddies/").then(function(response){
-    //ajouter un élément au panier
-    const basketContent = JSON.parse(localStorage.getItem("basketContent"));//récuperation local storage
-    const container = document.getElementById("product-basket");
-    if (basketContent.length === 0){ //Message panier vide
-        emptyBasketMessage(container);
-    } else {
-        let totalPrice = 0;
-        for (let productBasket of basketContent){
-            for (let productInfo of response){
-                if (productBasket.id === productInfo._id){
-                    totalPrice = addBasketProduct(container, productInfo, productBasket, basketContent, totalPrice);
-                    localStorage.setItem("totalPriceConfirmationPage", totalPrice);
-                }
-            }
-        }
-        // calcul du total
-        const totalPriceBasket = document.getElementById("total-price")
-        totalPriceBasket.innerHTML = "Total : " + totalPrice + " €";
-    }
-}).catch(function(err){
-    console.log(err);
-    if(err === 0){ // requete ajax annulée
-        alert("serveur HS");
-    }
-});
