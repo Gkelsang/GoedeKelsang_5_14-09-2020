@@ -71,3 +71,21 @@ footer{
     text-transform: uppercase;
     font-size: larger;
 }
+.titreformulaire {
+    color: white;
+}
+
+.label {
+    color: orange;
+}
+#btn {
+    color: orange;
+}
+.containerpanier {
+    border: solid 2px orange;
+    padding-top: 3%;
+}
+.containerformulaire {
+    border: solid 2px orange;
+    padding-top: 3%;
+}

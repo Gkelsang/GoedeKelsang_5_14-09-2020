@@ -18,8 +18,12 @@ get("http://localhost:3000/api/teddies/").then(function(response){
                 }
             }
         }
+        // --- Calculer le total du prix --- //
+        const totalPriceBasket = document.getElementById("total-price");
+        totalPriceBasket.innerHTML = "Total : "+ totalPrice + " €";
     }
 })
+
 
 // --- Message pour le panier vide --- //
 

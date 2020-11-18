@@ -31,11 +31,9 @@
         <h2>Détails de votre <span class="orspan" >panier</span>.</h2>
     </div>
 
+    <! ------------------------- Tableau des commandes ------------------------- >
 
-
-
-
-    <section class="container bg-dark">
+    <section class="container bg-dark containerpanier">
         <div class="row justify-content-around text-center mb-5">
             <div class="col-md-3 basket-title d-none d-md-block">
                 Produits
@@ -53,16 +51,73 @@
             <p id="total-price" class="pb-4"></p>         
         </div>
     </section>
+
+    <! ------------------------- Formulaire de commande ------------------------- >
+
+    <section class="container bg-dark containerformulaire">
+        <div class="titre-formulaire text-center">
+            <h4 class="titreformulaire">Pour valider votre commande, merci de completer les champs ci-dessous</h4>
+        </div>
+        <div class="formulaire d-flex justify-content-center">
+            <form id="formulaireContact">
+
+                <! ------------------------- Nom ------------------------- >
+                <div class="form-groupe row col-3">
+                    <label for="nom" class="col-sm-12 col-form-label mr-2 label">
+                        Nom
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="text" id="nom" class="form-control-sm" required >
+                    </div>
+                </div>
+
+                <! ------------------------- Prénom ------------------------- >
+                <div class="form-groupe row col-3">
+                    <label for="prenom" class="col-sm-12 col-form-label mr-2 label">
+                        Prénom
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="text" id="prenom" class="form-control-sm" required>
+                    </div>
+                </div>
+
+                <! ------------------------- Email ------------------------- >
+                <div class="form-groupe row col-3">
+                    <label for="email" class="col-sm-12 col-form-label mr-2 label">
+                        Email
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="email" id="email" class="form-control-sm" required>
+                    </div>
+                </div>
+
+                <! ------------------------- Adresse ------------------------- >
+                <div class="form-groupe row col-3">
+                    <label for="adresse" class="col-sm-12 col-form-label mr-2 label">
+                        Adresse
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="text" id="adresse" class="form-control-sm" required>
+                    </div>
+                </div>
+
+                <! ------------------------- Ville ------------------------- >
+                <div class="form-groupe row col-3">
+                    <label for="ville" class="col-sm-12 col-form-label mr-2 label">
+                        Ville
+                    </label>
+                    <div class="col-sm-12">
+                        <input type="text" id="ville" required class="form-control-sm"/>
+                    </div>
+                </div>
+
+                <button id="btn" class="bloc-button btn btn-lg btn-block col-sm-12 border border-dark d-flex justify-content-center mb-3" type="submit" aria-label="valider le formulaire">
+                    Envoyer
+                </button>
+            </form>    
+        </div> 
+        </section>
     
-
-
-
-
-
-
-
-
-
 <footer class="page-footer bg-dark">
     <div class="container-fluid text-center text-md-left">
     <a class="mlfooter" href="Mentions légales">Mentions légales</a>
