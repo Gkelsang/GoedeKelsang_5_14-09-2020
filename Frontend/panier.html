@@ -28,11 +28,41 @@
         </nav>
     </header>
     <div class="jumbotron">
-        <h2>Votre <span class="orspan" >panier</span>.</h2>
+        <h2>Détails de votre <span class="orspan" >panier</span>.</h2>
     </div>
 
+
+
+
+
+    <section class="container bg-dark">
+        <div class="row justify-content-around text-center mb-5">
+            <div class="col-md-3 basket-title d-none d-md-block">
+                Produits
+            </div>
+            <div class="col-md-3 basket-title d-none d-md-block">
+                Couleurs
+            </div>
+            <div class="col-md-3 basket-title d-none d-md-block">
+                Prix
+            </div>
+        </div>
+        <div id="product-basket" class="text-center">
+        </div>
+        <div class="text-center">
+            <p id="total-price" class="pb-4"></p>         
+        </div>
+    </section>
     
-    
+
+
+
+
+
+
+
+
+
 <footer class="page-footer bg-dark">
     <div class="container-fluid text-center text-md-left">
     <a class="mlfooter" href="Mentions légales">Mentions légales</a>
@@ -45,6 +75,6 @@
 </footer>
     <script src="https://kit.fontawesome.com/dd54313d73.js" crossorigin="anonymous" defer></script>
     <script src="JS/getandpost.js"></script>
-    <script src="JS/index.js"></script>
+    <script src="JS/panier.js"></script>
 </body>
 </html>

@@ -56,3 +56,18 @@ footer{
 .orfooter {
     color: orange;
 }
+
+/* ------------------------------------ Main panier ------------------------------------ */
+
+
+.basket-title {
+    color: white;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+#total-price {
+    color: orange;
+    text-transform: uppercase;
+    font-size: larger;
+}

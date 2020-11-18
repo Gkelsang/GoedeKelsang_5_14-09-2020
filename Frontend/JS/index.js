@@ -10,7 +10,7 @@ function addProduct(responseProduct, section){
   div.style.textAlign = "center";
   div.style.color ="white";
   div.style.paddingBottom = "5%";
-  div.style.paddingTop = "2%"
+  div.style.paddingTop = "2%";
 
   // --- crée une div avec une image --- // 
   const img = document.createElement("img");
