@@ -6,6 +6,28 @@ function getId(){
     return id;
 }
 
+// --- Caractéristiques d'un produit, id + lentille --- //
+class Product {
+    constructor(id, colorSelected) {
+        this.color = colorSelected;
+        this.id = id;
+    }
+}
+    
+// --- Ajoute le produit dans le panier avec la lentille sélectionnée par l'utilisateur --- //
+function addToBasket(colorSelected){
+    let basketContent = JSON.parse(localStorage.getItem("basketContent"));
+    if (basketContent === null){
+        basketContent = [];
+    }
+
+//--- infos pour le produit ajouté au storage --- //
+    let product = new Product(id, colorSelected);
+
+    basketContent.push(product);
+    localStorage.setItem("basketContent", JSON.stringify(basketContent));
+}
+
 // --- Création du fichier HTML sans lequel tout es affiché --- // 
 
 function addProductInfo(response){
@@ -49,21 +71,25 @@ function addProductInfo(response){
     optionDefault.innerHTML = "Please choose a color";
     colors.appendChild(optionDefault);
     
+    // --- Bouton ajouter au panier --- //
+    const btn = document.createElement("button");
+    btn.innerHTML = "Add to basket";
 
-    // --- Rajoute chaque couleurs dispo pour chaque ourson --- //
+    // Ajout d'élément au local storage
+    btn.addEventListener('click', function(){ 
+        const colors = document.getElementsByTagName("select");         
+        const colorSelected = colors[0].value;
+
+        addToBasket(colorSelected);
+        alert("ajouté au panier");
+    });
+
     for (let i = 0; i < response.colors.length; i = i + 1){
         const option = document.createElement("option");
         option.setAttribute("value", response.colors[i]);
         option.innerHTML = response.colors[i];
         colors.appendChild(option);
     }
-
-
-    // --- Bouton ajouter au panier --- //
-    const btn = document.createElement("button");
-    console.log(btn);
-    btn.innerHTML = "Add to basket";
-
 
     // --- crée une div dans la balise container --- // 
     container.appendChild(div);
@@ -82,6 +108,9 @@ function addProductInfo(response){
 
     // --- ajoute une div pour la couleur de l'item --- //
     div.appendChild(colors);
+
+    // --- ajoute une div pour le boutton --- //
+    div.appendChild(btn);
 
 }
 
