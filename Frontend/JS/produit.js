@@ -6,7 +6,7 @@ function getId(){
     return id;
 }
 
-// --- Caractéristiques d'un produit, id + lentille --- //
+// --- Données d'un produit ID + Couleur --- //
 class Product {
     constructor(id, colorSelected) {
         this.color = colorSelected;
@@ -14,7 +14,7 @@ class Product {
     }
 }
     
-// --- Ajoute le produit dans le panier avec la lentille sélectionnée par l'utilisateur --- //
+// --- Ajoute le produit dans le panier avec les infos --- //
 function addToBasket(colorSelected){
     let basketContent = JSON.parse(localStorage.getItem("basketContent"));
     if (basketContent === null){
@@ -23,10 +23,12 @@ function addToBasket(colorSelected){
 
 //--- infos pour le produit ajouté au storage --- //
     let product = new Product(id, colorSelected);
-
     basketContent.push(product);
     localStorage.setItem("basketContent", JSON.stringify(basketContent));
 }
+
+
+// ---------- Partie création du HTML dynamiquement ---------- //
 
 // --- Création du fichier HTML sans lequel tout es affiché --- // 
 
@@ -75,7 +77,13 @@ function addProductInfo(response){
     const btn = document.createElement("button");
     btn.innerHTML = "Add to basket";
 
-    // Ajout d'élément au local storage
+
+    // ---------- Fin de la partie création ---------- //
+    // ---------- ---------- ---------- ---------- ---------- //
+
+
+    // --- Ajout d'élément au local storage --- // 
+
     btn.addEventListener('click', function(){ 
         const colors = document.getElementsByTagName("select");         
         const colorSelected = colors[0].value;
@@ -90,6 +98,9 @@ function addProductInfo(response){
         option.innerHTML = response.colors[i];
         colors.appendChild(option);
     }
+
+
+    // ---------- Arborescence de la page ---------- //
 
     // --- crée une div dans la balise container --- // 
     container.appendChild(div);
@@ -115,6 +126,7 @@ function addProductInfo(response){
 }
 
 // --- Permet de récupérer l'id des différents item et de nous les renvoyer --- //
+
 const id = getId();
 get("http://localhost:3000/api/teddies/" + id).then( function(response){
     addProductInfo(response);
