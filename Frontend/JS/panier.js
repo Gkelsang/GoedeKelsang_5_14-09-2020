@@ -86,9 +86,8 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
 }
 
 
+// ------------------------------------------------- FORMULAIRE + VALIDATION ------------------------------------------------- //
 
-
-// --------------------- Conditions du formulaire --------------------- //
 // --------------------- Conditions du formulaire --------------------- //
 
 const formValid = document.getElementById('submitbtn');
@@ -116,7 +115,12 @@ const villeValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-Z�
 
 formValid.addEventListener('click', validation);
 
+// --------------------- Messages d'erreurs --------------------- //
+
+
 function validation(event){
+    // --------------------- Messages d'erreurs --------------------- //
+    // --------------------- nom --------------------- //
     if (nom.validity.valueMissing){
         event.preventDefault();
         missNom.textContent = 'Nom manquant !';
@@ -128,7 +132,8 @@ function validation(event){
         missNom.style.color = 'orange'
         missNom.style.paddingLeft = '5%';
     }
-
+    // --------------------- Messages d'erreurs --------------------- //
+    // --------------------- prénom --------------------- //
     if (prenom.validity.valueMissing){
         event.preventDefault();
         missPrenom.textContent = 'Prenom manquant !';
@@ -140,7 +145,8 @@ function validation(event){
         missPrenom.style.color = 'orange'
         missPrenom.style.paddingLeft = '5%';
     }
-
+    // --------------------- Messages d'erreurs --------------------- //
+    // --------------------- email --------------------- //
     if (email.validity.valueMissing){
         event.preventDefault();
         missEmail.textContent = 'Email manquante !';
@@ -152,7 +158,8 @@ function validation(event){
         missEmail.style.color = 'orange'
         missEmail.style.paddingLeft = '5%';
     }
-
+    // --------------------- Messages d'erreurs --------------------- //
+    // --------------------- adresse --------------------- //
     if (adresse.validity.valueMissing){
         event.preventDefault();
         missAdresse.textContent = 'Adresse manquante !';
@@ -164,7 +171,8 @@ function validation(event){
         missAdresse.style.color = 'orange'
         missAdresse.style.paddingLeft = '5%';
     }
-
+    // --------------------- Messages d'erreurs --------------------- //
+    // --------------------- ville --------------------- //
     if (ville.validity.valueMissing){
         event.preventDefault();
         missVille.textContent = 'Ville manquante !';
@@ -175,13 +183,28 @@ function validation(event){
         missVille.textContent = 'Format Incorrect';
         missVille.style.color = 'orange'
         missVille.style.paddingLeft = '5%';
-         }
+    }
 }
 
 // --------------------- Conditions du formulaire --------------------- //
-// --------------------- Conditions du formulaire --------------------- //
 
 
+// ------------------------------------------------- ENVOYER REQUETE ------------------------------------------------- //
+
+
+function envoyerRequete(){
+
+}
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------- ENVOYER REQUETE ------------------------------------------------- //
 
 get("http://localhost:3000/api/teddies/").then(function(response){
     
