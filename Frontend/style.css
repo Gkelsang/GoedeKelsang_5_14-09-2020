@@ -78,8 +78,9 @@ footer{
 .label {
     color: orange;
 }
-#btn {
+.submitbtn {
     color: orange;
+    padding-bottom: 5%;
 }
 .containerpanier {
     border: solid 2px orange;

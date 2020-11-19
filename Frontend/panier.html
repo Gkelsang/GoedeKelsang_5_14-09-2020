@@ -59,62 +59,38 @@
             <h4 class="titreformulaire">Pour valider votre commande, merci de completer les champs ci-dessous</h4>
         </div>
         <div class="formulaire d-flex justify-content-center">
-            <form id="formulaireContact">
+                <form id="form_1" class="account">
+                    <div id="error"></div>
 
-                <! ------------------------- Nom ------------------------- >
-                <div class="form-groupe row col-3">
-                    <label for="nom" class="col-sm-12 col-form-label mr-2 label">
-                        Nom
-                    </label>
-                    <div class="col-sm-12">
-                        <input type="text" id="nom" class="form-control-sm" required >
+                    <div class="form-group row">
+                        <label for="nom" class="label col-sm-12 col-form-label mr-2"> Nom</label>
+                        <input id="nom" name="nom" class="form-control-sm" type='text' required>
+                        <span id="missNom"></span>
                     </div>
-                </div>
-
-                <! ------------------------- Prénom ------------------------- >
-                <div class="form-groupe row col-3">
-                    <label for="prenom" class="col-sm-12 col-form-label mr-2 label">
-                        Prénom
-                    </label>
-                    <div class="col-sm-12">
-                        <input type="text" id="prenom" class="form-control-sm" required>
+                    <div class="form-group row">
+                        <label for="prenom" class="label col-sm-12 col-form-label mr-2"> Prénom</label>
+                        <input id="prenom" name="prenom" class="form-control-sm" type='text' required>
+                        <span id="missPrenom"></span>
                     </div>
-                </div>
-
-                <! ------------------------- Email ------------------------- >
-                <div class="form-groupe row col-3">
-                    <label for="email" class="col-sm-12 col-form-label mr-2 label">
-                        Email
-                    </label>
-                    <div class="col-sm-12">
-                        <input type="email" id="email" class="form-control-sm" required>
+                    <div class="form-group row">
+                        <label for="email" class="label col-sm-12 col-form-label mr-2"> Email</label>
+                        <input id="email" name="email" class="form-control-sm" type='email' required>
+                        <span id="missEmail"></span>
                     </div>
-                </div>
-
-                <! ------------------------- Adresse ------------------------- >
-                <div class="form-groupe row col-3">
-                    <label for="adresse" class="col-sm-12 col-form-label mr-2 label">
-                        Adresse
-                    </label>
-                    <div class="col-sm-12">
-                        <input type="text" id="adresse" class="form-control-sm" required>
+                    <div class="form-group row">
+                        <label for="adresse" class="label col-sm-12 col-form-label mr-2"> Adresse</label>
+                        <input id="adresse" name="adresse" class="form-control-sm" type='text' required>
+                        <span id="missAdresse"></span>
                     </div>
-                </div>
-
-                <! ------------------------- Ville ------------------------- >
-                <div class="form-groupe row col-3">
-                    <label for="ville" class="col-sm-12 col-form-label mr-2 label">
-                        Ville
-                    </label>
-                    <div class="col-sm-12">
-                        <input type="text" id="ville" required class="form-control-sm"/>
+                    <div class="form-group row">
+                        <label for="ville" class="label col-sm-12 col-form-label mr-2"> Ville</label>
+                        <input id="ville" name="ville" class="form-control-sm" type='text' required>
+                        <span id="missVille"></span>
                     </div>
-                </div>
-
-                <button id="btn" class="bloc-button btn btn-lg btn-block col-sm-12 border border-dark d-flex justify-content-center mb-3" type="submit" aria-label="valider le formulaire">
-                    Envoyer
-                </button>
-            </form>    
+                    <div class="submitbtn">
+                        <input class="col-sm-8" type="submit" id="submitbtn" value="Confirmer">
+                    </div> 
+                </form>         
         </div> 
         </section>
     
@@ -130,6 +106,8 @@
 </footer>
     <script src="https://kit.fontawesome.com/dd54313d73.js" crossorigin="anonymous" defer></script>
     <script src="JS/getandpost.js"></script>
+    <script src="JS/formulaire.js"></script>
+    <script></script>
     <script src="JS/panier.js"></script>
 </body>
 </html>
