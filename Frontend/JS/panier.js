@@ -112,11 +112,11 @@ const ville = document.getElementById('ville');
 const missVille = document.getElementById('missVille');
 const villeValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
-
 formValid.addEventListener('click', validation);
 
 // --------------------- Messages d'erreurs --------------------- //
 
+formValid.onChange
 
 function validation(event){
     // --------------------- Messages d'erreurs --------------------- //
@@ -186,25 +186,65 @@ function validation(event){
     }
 }
 
-// --------------------- Conditions du formulaire --------------------- //
+
+// --------------------- FIN Conditions du formulaire --------------------- //
 
 
 // ------------------------------------------------- ENVOYER REQUETE ------------------------------------------------- //
 
+class infoForm {
+    constructor(nom, prenom, email, adresse, ville) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.addresse = adresse;
+        this.ville = ville;
+    }
+}
+
+//information commande
+class infoCommande {
+    constructor(infoFormulaire, idOrder) {
+        this.contact = infoFormulaire;
+        this.products = idOrder;
+    }
+}
+
 
 function envoyerRequete(){
+    const nom = document.getElementById("nom").value;
+    const prenom = document.getElementById("prenom").value;
+    const email = document.getElementById("email").value;
+    const adresse = document.getElementById("adresse").value;
+    const ville = document.getElementById("ville").value;
 
+    const infoFormulaire = new infoform (nom, prenom, email, adresse, ville);
+    const basketContent = JSON.parse(localStorage.getItem("basketContent"));
+
+    let idOrder = [];
+    console.log(idOrder);
+
+    for (let i = 0; i < basketContent.length; i = i + 1){
+        basketContent[i].id;
+        idOrder.push(basketContent[i].id);
+    }
+    const commande = new infoCommande(infoFormulaire, idOrder);
+    post("http://localhost:3000/api/teddies/order", commande).then( function(response){
+        localStorage.setItem("basketContent", JSON.stringify([]));
+        localStorage.setItem("confirmationCommande", response.orderId);
+        window.location.href = "commande.html";
+        console.log(commande);
+
+    })
 }
 
 
 
+// ------------------------------------------------- FIN ENVOYER REQUETE ------------------------------------------------- //
 
 
 
 
-
-
-// ------------------------------------------------- ENVOYER REQUETE ------------------------------------------------- //
 
 get("http://localhost:3000/api/teddies/").then(function(response){
     
