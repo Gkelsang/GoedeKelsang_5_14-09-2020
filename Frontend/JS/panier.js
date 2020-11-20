@@ -108,7 +108,7 @@ const emailValid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\
 
 const address = document.getElementById('address');
 const missAddress = document.getElementById('missAddress');
-const addressValid = /^[a-z0-9\s,'-]*$/i;
+const addressValid = /^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}$/;
 
 const ville = document.getElementById('ville');
 const missVille = document.getElementById('missVille');
@@ -116,7 +116,7 @@ const villeValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-Z�
 
 const formValid = document.getElementById('submitbtn');
 if (formValid) {
-    formValid.addEventListener('click', validation);
+    formValid.addEventListener("submit", validation);
 }
 
 // --------------------- Messages d'erreurs --------------------- //
@@ -228,6 +228,25 @@ function envoyerRequete(){
         window.location.href = "commande.html";
         console.log(response);
     })
+}
+
+//information formulaire
+class infoForm {
+    constructor(name, firstname, mail, address, city) {
+        this.lastName = name;
+        this.firstName = firstname;
+        this.email = mail;
+        this.address = address;
+        this.city = city;
+    }
+}
+
+//information commande
+class orderInfo {
+    constructor(formInformation, idOrder) {
+        this.contact = formInformation;
+        this.products = idOrder;
+    }
 }
 // ------------------------------------------------- FIN ENVOYER REQUETE ------------------------------------------------- //
 

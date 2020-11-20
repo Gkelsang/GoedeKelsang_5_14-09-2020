@@ -35,13 +35,13 @@
 
     <section class="container bg-dark containerpanier">
         <div class="row justify-content-around text-center mb-5">
-            <div class="col-md-3 basket-title d-none d-md-block">
+            <div class="col-md-2 basket-title d-none d-md-block">
                 Produits
             </div>
-            <div class="col-md-3 basket-title d-none d-md-block">
+            <div class="col-md-2 basket-title d-none d-md-block">
                 Couleurs
             </div>
-            <div class="col-md-3 basket-title d-none d-md-block">
+            <div class="col-md-2 basket-title d-none d-md-block">
                 Prix
             </div>
         </div>
@@ -60,30 +60,30 @@
         </div>
         <div class="formulaire d-flex justify-content-center">
                 <form id="form" class="account" >
-
+                    <div class="error"></div>
                     <div class="form-group row">
                         <label for="name" class="label col-sm-12 col-form-label mr-2"> Nom</label>
-                        <input id="nom" name="nom" class="form-control-sm" type='text' placeholder="Ex: Dupont" size="30" maxlength="15" required>
+                        <input id="lastName" class="form-control-sm" type='text' placeholder="Ex: Dupont" size="30" maxlength="20" required>
                         <span id="missNom"></span>
                     </div>
                     <div class="form-group row">
                         <label for="firstname" class="label col-sm-12 col-form-label mr-2"> Prénom</label>
-                        <input id="prenom" name="prenom" class="form-control-sm" placeholder="Ex: Pierre" size="30" maxlength="15" type='text' required>
+                        <input id="prenom" class="form-control-sm" placeholder="Ex: Pierre" size="30" maxlength="15" type='text' required>
                         <span id="missPrenom"></span>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="label col-sm-12 col-form-label mr-2"> Email</label>
-                        <input id="email" name="email" class="form-control-sm" placeholder="Ex: exemple01@gmail.com" size="30" maxlength="20" type='email' required>
+                        <input id="email" class="form-control-sm" placeholder="Ex: exemple01@gmail.com" size="30" maxlength="20" type='email' required>
                         <span id="missEmail"></span>
                     </div>
                     <div class="form-group row">
                         <label for="address" class="label col-sm-12 col-form-label mr-2"> Adresse</label>
-                        <input id="address" name="address" class="form-control-sm" placeholder="Ex: 12 Avenue des pins" size="30" maxlength="30" type='text' required>
+                        <input id="address" class="form-control-sm" placeholder="Ex: 12 Avenue des pins" size="30" maxlength="80" type='text' required>
                         <span id="missAddress"></span>
                     </div>
                     <div class="form-group row">
                         <label for="city" class="label col-sm-12 col-form-label mr-2"> Ville</label>
-                        <input id="ville" name="ville" class="form-control-sm" placeholder="Ex: Lyon" size="30" maxlength="15" type='text' required>
+                        <input id="ville" class="form-control-sm" placeholder="Ex: Lyon" size="30" maxlength="15" type='text' required>
                         <span id="missVille"></span>
                     </div>
                     <div class="submitbtn">
