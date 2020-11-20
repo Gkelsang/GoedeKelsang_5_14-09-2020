@@ -1,6 +1,8 @@
 
 // --- Création du HTML à partir du panier --- //
 
+const container = document.getElementById("product-basket");
+
 function addBasketProduct(container, productInfo, productBasket, basketContent, totalPrice){
     const productContainer = document.createElement("div");
     productContainer.setAttribute("class", "row justify-content-around mb-5");
@@ -49,7 +51,7 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
     divPrice.style.color = "orange";
     totalPrice = totalPrice + productInfo.price;  
      
-
+    
 
 //  // ----------------------------------------------- FIN DU TABLEAU ----------------------------------------------- //  //
 
@@ -90,7 +92,7 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
 
 // --------------------- Conditions du formulaire --------------------- //
 
-const formValid = document.getElementById('submitbtn');
+
 
 const nom = document.getElementById('nom');
 const missNom = document.getElementById('missNom');
@@ -104,19 +106,21 @@ const email = document.getElementById('email');
 const missEmail = document.getElementById('missEmail');
 const emailValid = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const adresse = document.getElementById('adresse');
-const missAdresse = document.getElementById('missAdresse');
-const adresseValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+const address = document.getElementById('address');
+const missAddress = document.getElementById('missAddress');
+const addressValid = /^[a-z0-9\s,'-]*$/i;
 
 const ville = document.getElementById('ville');
 const missVille = document.getElementById('missVille');
 const villeValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
-formValid.addEventListener('click', validation);
+const formValid = document.getElementById('submitbtn');
+if (formValid) {
+    formValid.addEventListener('click', validation);
+}
 
 // --------------------- Messages d'erreurs --------------------- //
 
-formValid.onChange
 
 function validation(event){
     // --------------------- Messages d'erreurs --------------------- //
@@ -160,16 +164,16 @@ function validation(event){
     }
     // --------------------- Messages d'erreurs --------------------- //
     // --------------------- adresse --------------------- //
-    if (adresse.validity.valueMissing){
+    if (address.validity.valueMissing){
         event.preventDefault();
-        missAdresse.textContent = 'Adresse manquante !';
-        missAdresse.style.color = 'red';
-        missAdresse.style.paddingLeft = '5%';
-    }else if (adresseValid.test(Adresse.value) == false){
+        missAddress.textContent = 'Adresse manquante !';
+        missAddress.style.color = 'red';
+        missAddress.style.paddingLeft = '5%';
+    }else if (addressValid.test(address.value) == false){
         event.preventDefault();
-        missAdresse.textContent = 'Format Incorrect';
-        missAdresse.style.color = 'orange'
-        missAdresse.style.paddingLeft = '5%';
+        missAddress.textContent = 'Format Incorrect';
+        missAddress.style.color = 'orange'
+        missAddress.style.paddingLeft = '5%';
     }
     // --------------------- Messages d'erreurs --------------------- //
     // --------------------- ville --------------------- //
@@ -186,63 +190,46 @@ function validation(event){
     }
 }
 
+function emptyBasketMessage(container){
+    const emptyBasket = document.createElement("div")
+    emptyBasket.innerHTML = "Votre panier est vide";
+    container.appendChild(emptyBasket);
+
+    return container;
+}
 
 // --------------------- FIN Conditions du formulaire --------------------- //
 
 
 // ------------------------------------------------- ENVOYER REQUETE ------------------------------------------------- //
 
-class infoForm {
-    constructor(nom, prenom, email, adresse, ville) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.addresse = adresse;
-        this.ville = ville;
-    }
-}
-
-//information commande
-class infoCommande {
-    constructor(infoFormulaire, idOrder) {
-        this.contact = infoFormulaire;
-        this.products = idOrder;
-    }
-}
-
 
 function envoyerRequete(){
-    const nom = document.getElementById("nom").value;
-    const prenom = document.getElementById("prenom").value;
+    const name = document.getElementById("nom").value;
+    const firstName = document.getElementById("prenom").value;
     const email = document.getElementById("email").value;
-    const adresse = document.getElementById("adresse").value;
-    const ville = document.getElementById("ville").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("ville").value;
 
-    const infoFormulaire = new infoform (nom, prenom, email, adresse, ville);
+    const infoFormulaire = new infoform (name, firstName, email, address, city);
     const basketContent = JSON.parse(localStorage.getItem("basketContent"));
 
     let idOrder = [];
-    console.log(idOrder);
 
     for (let i = 0; i < basketContent.length; i = i + 1){
         basketContent[i].id;
         idOrder.push(basketContent[i].id);
     }
+    
     const commande = new infoCommande(infoFormulaire, idOrder);
     post("http://localhost:3000/api/teddies/order", commande).then( function(response){
         localStorage.setItem("basketContent", JSON.stringify([]));
         localStorage.setItem("confirmationCommande", response.orderId);
         window.location.href = "commande.html";
-        console.log(commande);
-
+        console.log(response);
     })
 }
-
-
-
 // ------------------------------------------------- FIN ENVOYER REQUETE ------------------------------------------------- //
-
-
 
 
 
@@ -251,7 +238,7 @@ get("http://localhost:3000/api/teddies/").then(function(response){
     // --- Ajouter un élement au panier --- // 
         // --- Récupération du localStorage --- //
     const basketContent = JSON.parse(localStorage.getItem("basketContent"));
-    const container = document.getElementById("product-basket");
+    
     if (basketContent.length === 0){
 
         // --- Si panier vide écrire une message --- //
@@ -271,7 +258,17 @@ get("http://localhost:3000/api/teddies/").then(function(response){
         totalPriceBasket.innerHTML = "Total : "+ totalPrice + " €";
     }
 })
+const btn = document.getElementById("submitbtn");
 
+btn.addEventListener("click", function(event){
+    event.preventDefault();
+    let formValid = true;
+    formValid = validation(formValid);
+
+    if (formValid === true){
+        envoyerRequete();
+    }
+});
 
 
 

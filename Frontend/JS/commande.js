@@ -5,7 +5,7 @@ function addConfirmationText(){
     const messageConfirmation = document.createElement("p");
     const confirmationPrice = document.createElement("p");
     messageConfirmation.innerHTML = "votre commande n° "+ confirmationId;
-    confirmationPrice.innerHTML = "Prix total : "+ totalPrice + "€";
+    confirmationPrice.innerHTML = "Prix total: "+ totalPrice + "€";
     messageConfirmation.setAttribute("class", "confirmation-title pt-5")
     confirmation.appendChild(messageConfirmation);
     confirmation.appendChild(confirmationPrice);
