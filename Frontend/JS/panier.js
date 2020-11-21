@@ -88,18 +88,20 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
 }
 
 
+
+
 // ------------------------------------------------- FORMULAIRE + VALIDATION ------------------------------------------------- //
 
 // --------------------- Conditions du formulaire --------------------- //
 
+// --- Validation nom, prénom et ville --- // 
 
-
-//////////////////////////Validation Nom, Prénom, Ville expression regulière formulaire////////////////////
 function isAlpha(value){
     return /[a-zA-Z]+/.test(value);
 }
 
-////////////////////////////////////// Validation mail expression regulière formulaire////////////////////
+// --- Validation mail --- //
+
 function validateEmail(value){
  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)){
     return true;
@@ -107,12 +109,14 @@ function validateEmail(value){
   return false;
 }
 
-////////////////////////////////////// Validation adresse expression regulière formulaire////////////////////
+// --- Validation adresse --- //
+
 function isAdresse(value){
     return /\w+/.test(value);
 }
 
-////////////////////////// Message erreur du formulaire quand les champs ne sont pas remplis ///////////////////
+// ------------------------------------------ Message d'erreurs formulaire ------------------------------------------ //
+
 function checkFormErrors(orderValidity){
     const error = document.getElementById("error");
     error.innerHTML = "";
@@ -159,7 +163,8 @@ function checkFormErrors(orderValidity){
     return orderValidity;
 }
 
-///////////////////////////////////////////// Envoyer la requête de commande/////////////////////////////////////////////////
+// ------------------------------------------ Envoye requete ------------------------------------------ //
+
 function sendOrder(){
     const lastName = document.getElementById("lastName").value;
     const firstName = document.getElementById("firstName").value;
@@ -180,20 +185,18 @@ function sendOrder(){
     post("http://localhost:3000/api/teddies/order", command).then( function(response){
         localStorage.setItem("basketContent", JSON.stringify([])); 
         localStorage.setItem("orderConfirmation", response.orderId);
-        window.location.href = "commande.html"; // on va à la page de confirmation
-    }).catch(function(err){
-        console.log(err);
-        if(err === 0){ // requete ajax annulée
-            alert("serveur HS");
-        }
-    });
+        window.location.href = "commande.html"; 
+    })
 }
-/////////////////////////////////// Message panier vide //////////////////////////////////////////////////////
+// ------------------------------------------ Panier vide ------------------------------------------ //
+
 function emptyBasketMessage(container){
     const emptyBasket = document.createElement("div")
     emptyBasket.innerHTML = "Votre panier est vide";
+    emptyBasket.style.color = "orange";
+    emptyBasket.style.textTransform = "uppercase";
+    emptyBasket.style.fontSize = "2em";
     container.appendChild(emptyBasket);
-
     return container;
 }
 

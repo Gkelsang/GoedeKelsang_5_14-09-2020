@@ -1,4 +1,4 @@
-////////////////////////////////////// Récuparation de l'API ///////////////////////////////////////
+// ----------------------------- Récuparation de l'API ----------------------------- //
 function get(url){
     const promise = new Promise(function(resolve, reject){
         const request = new XMLHttpRequest();
@@ -17,7 +17,7 @@ function get(url){
     return promise;
 }
 
-///////////////////////////////////////// Renvoi de l'API //////////////////////////////////////////////////////////
+// ----------------------------- Renvoi de l'API ----------------------------- //
 function post(url, jsonBody){
     const promise = new Promise(function(resolve, reject){
         const request = new XMLHttpRequest();

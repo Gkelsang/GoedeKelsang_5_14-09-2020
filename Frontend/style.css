@@ -1,16 +1,8 @@
-body {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
 /* ------------------------------------ Header ------------------------------------ */
-
 .site-title {
     text-transform: uppercase;
 }
-
 /* ------------------------------------ Jumbotron ------------------------------------ */
-
 h2 {
     text-align: center;
     text-transform: uppercase;
@@ -22,13 +14,7 @@ h3 {
     color: orange;
 }
 
-
-/* ------------------------------------ Main index ------------------------------------ */
-
-
-
 /* ------------------------------------ Footer ------------------------------------ */
-
 footer{
     margin-top: 5%;
     padding-top: 2%;
@@ -56,9 +42,6 @@ footer{
     color: orange;
 }
 
-/* ------------------------------------ Main panier ------------------------------------ */
-
-
 .basket-title {
     color: white;
     text-transform: uppercase;
@@ -81,27 +64,18 @@ footer{
     color: orange;
     padding-bottom: 5%;
 }
-.containerpanier {
-    border: solid 2px orange;
-    padding-top: 3%;
-}
-.containerformulaire {
-    border: solid 2px orange;
-    padding-top: 3%;
-}
 
-
-.containerndc {
+.containerpanier, .containerformulaire, .containerndc {
     border: solid 3px orange;
-}
-.confirmation-title{
+    padding-top: 3%;
+    padding-bottom: 3%;
     color: white;
+    margin-top: 5%;
 }
-.ncommande {
-    text-transform: uppercase;
+
+.pcommande, .ncommande {
     color: orange;
-}
-.pcommande {
     text-transform: uppercase;
-    color: orange;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }

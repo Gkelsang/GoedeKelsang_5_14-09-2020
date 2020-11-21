@@ -1,4 +1,4 @@
-//information formulaire
+// ----------------------------- information formulaire ----------------------------- // 
 class infoForm {
     constructor(name, firstname, mail, adress, city) {
         this.lastName = name;
@@ -9,7 +9,7 @@ class infoForm {
     }
 }
 
-//information commande
+//----------------------------- information commande ----------------------------- //
 class orderInfo {
     constructor(formInformation, idOrder) {
         this.contact = formInformation;
