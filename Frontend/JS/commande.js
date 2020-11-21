@@ -1,5 +1,5 @@
 function addConfirmationText(){
-    const confirmationId = localStorage.getItem("confirmationCommande"); // récuperation de l'ID dans le local storage
+    const confirmationId = localStorage.getItem("orderConfirmation"); // récuperation de l'ID dans le local storage
     const totalPrice = localStorage.getItem("totalPriceConfirmationPage"); //récuperation du prix dans le local storage
     const confirmation = document.getElementById("confirmation");
     const messageConfirmation = document.createElement("p");

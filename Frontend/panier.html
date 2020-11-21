@@ -60,21 +60,21 @@
         </div>
         <div class="formulaire d-flex justify-content-center">
                 <form id="form" class="account" >
-                    <div class="error"></div>
+                    <div id="error"></div>
                     <div class="form-group row">
-                        <label for="name" class="label col-sm-12 col-form-label mr-2"> Nom</label>
+                        <label for="lastName" class="label col-sm-12 col-form-label mr-2"> Nom</label>
                         <input id="lastName" class="form-control-sm" type='text' placeholder="Ex: Dupont" size="30" maxlength="20" required>
-                        <span id="missNom"></span>
+                        <div id="error"></div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstname" class="label col-sm-12 col-form-label mr-2"> Prénom</label>
-                        <input id="prenom" class="form-control-sm" placeholder="Ex: Pierre" size="30" maxlength="15" type='text' required>
+                        <label for="firstName" class="label col-sm-12 col-form-label mr-2"> Prénom</label>
+                        <input id="firstName" class="form-control-sm" placeholder="Ex: Pierre" size="30" maxlength="15" type='text' required>
                         <span id="missPrenom"></span>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="label col-sm-12 col-form-label mr-2"> Email</label>
                         <input id="email" class="form-control-sm" placeholder="Ex: exemple01@gmail.com" size="30" maxlength="20" type='email' required>
-                        <span id="missEmail"></span>
+                        <div id="error1"></div>
                     </div>
                     <div class="form-group row">
                         <label for="address" class="label col-sm-12 col-form-label mr-2"> Adresse</label>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="city" class="label col-sm-12 col-form-label mr-2"> Ville</label>
-                        <input id="ville" class="form-control-sm" placeholder="Ex: Lyon" size="30" maxlength="15" type='text' required>
+                        <input id="city" class="form-control-sm" placeholder="Ex: Lyon" size="30" maxlength="15" type='text' required>
                         <span id="missVille"></span>
                     </div>
                     <div class="submitbtn">
