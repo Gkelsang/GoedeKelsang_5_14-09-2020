@@ -27,7 +27,6 @@ h3 {
 
 
 
-
 /* ------------------------------------ Footer ------------------------------------ */
 
 footer{
@@ -89,4 +88,20 @@ footer{
 .containerformulaire {
     border: solid 2px orange;
     padding-top: 3%;
+}
+
+
+.containerndc {
+    border: solid 3px orange;
+}
+.confirmation-title{
+    color: white;
+}
+.ncommande {
+    text-transform: uppercase;
+    color: orange;
+}
+.pcommande {
+    text-transform: uppercase;
+    color: orange;
 }
