@@ -121,7 +121,7 @@ function checkFormErrors(orderValidity){
     const error = document.getElementById("error");
     error.innerHTML = "";
     let inputIds = ["lastName", "firstName", "email", "address", "city"];
-    let inputTexts = ["lastName", "firstName", "email", "address", "city"];
+    let inputTexts = ["Nom", "Prénom", "email", "adresse", "ville"];
     for (let i = 0; i < inputIds.length; i = i + 1){
         const input = document.getElementById(inputIds[i]);
         if (input.value === ""){
