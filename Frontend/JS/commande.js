@@ -10,6 +10,8 @@ function addConfirmationText(){
     messageConfirmation.setAttribute("class", "confirmation-title pt-3")
     confirmation.appendChild(messageConfirmation);
 
+
+
     // --- récupere le total du prix dans le local storage --- //
     const totalPrice = localStorage.getItem("totalPriceConfirmationPage");
     // --- récupere la balise dans laquelle afficher le numéro de commande --- //

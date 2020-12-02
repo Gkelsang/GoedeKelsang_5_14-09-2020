@@ -1,6 +1,5 @@
 // --- les infos qui doivent être créer en HTML pour chaques infos récupérés du serveur --- // 
 
-
 // --- crée une section avec une div à l'interieur qui va contenir les informations avec les attributs suivant --- // 
 
 function addProduct(responseProduct, section){
