@@ -1,17 +1,16 @@
 # P5
 
-Orinoco
+Orinoteddys
 
-Voici le projet 5 de la formation de développeur web chez OpenClassrooms. 
 
-Prérequis: 
+Pour lancer ce projet vous allez avoir besoin de NodeJS et npm d'installé.
 
-Vous allez avoir besoin d'avoir Node et Npm d'installer sur votre machine. 
+1/ Commencé par créer un dossier dans lequel vous allez cloner le repository.
 
-Etapes: 
+2/ Une fois le repository cloné, entré dans le dossier Backend du fichier grace à la commande: 
+" cd C:\Users\gkels\OneDrive\Bureau\Openclassroom\P5\GoedeKelsang_5_14-09-2020\Backend "
 
-1/ Cloner ce repository sur votre machine.
-2/ Une fois dans le fichier Backend/JWDP5 lancer le serveur grace à un npm start. 
-    Le serveur devrait alors ce lancer sur son port par defaut 3000. 
-3/ Vous pouvez maintenant ouvrir le fichier index.html.    
-    
+3/ Une fois terminé lancé le serveur grace à la commande: " npm start "
+Il devrait alors se lancer sur un port par defaut 3000.
+
+4/ Vous pouvez maintenant ourvir la page index.html.
