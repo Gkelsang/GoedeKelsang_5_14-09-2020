@@ -67,8 +67,7 @@ function addBasketProduct(container, productInfo, productBasket, basketContent, 
                 break;
             }
         }
-
-    // -------- Met le panier à jour -------- //     
+ 
         localStorage.setItem("basketContent", JSON.stringify(basketContent)); 
     // -------- Permet de revenir en haut de la page une fois qu'on a cliquer sur supprimé -------- // 
         window.location.href = "panier.html"; 
